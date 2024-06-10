@@ -6,10 +6,13 @@ import Spinner from "./Spinner";
 const JobListings = ({ isHome = false }) => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const API_URL = "https://backend-4gjj.onrender.com";
 
   useEffect(() => {
     const fetchJobs = async () => {
-      const api_url = isHome ? "/api/jobs?_limit=3" : "/api/jobs";
+      const api_url = isHome
+        ? `${API_URL}/api/jobs?_limit=3`
+        : `${API_URL}/api/jobs`;
       try {
         const res = await fetch(api_url);
         const data = await res.json();
