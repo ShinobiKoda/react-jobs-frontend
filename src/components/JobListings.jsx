@@ -32,7 +32,7 @@ const JobListings = ({ isHome = false }) => {
         // Ensure the spinner shows for at least 1 second
         setTimeout(() => {
           setLoading(false);
-        }, 1000);
+        }, 100);
       }
     };
     fetchJobs();
