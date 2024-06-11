@@ -18,7 +18,7 @@ const App = () => {
   // Add new Job
 
   const addJob = async (newJob) => {
-    const res = await fetch(`${API_URL}`, {
+    const res = await fetch(`${API_URL}/api/jobs`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,14 +30,14 @@ const App = () => {
   // DeleteJob
 
   const deleteJob = async (id) => {
-    const res = await fetch(`${API_URL}/${id}`, {
+    const res = await fetch(`${API_URL}/api/jobs/${id}`, {
       method: "DELETE",
     });
     return;
   };
   // Upadate job
   const updateJob = async (job) => {
-    const res = await fetch(`${API_URL}/${job.id}`, {
+    const res = await fetch(`${API_URL}/api/jobs/${job.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
