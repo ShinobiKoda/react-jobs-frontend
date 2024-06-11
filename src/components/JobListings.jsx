@@ -16,18 +16,27 @@ const JobListings = ({ isHome = false }) => {
       try {
         const res = await fetch(api_url);
         const data = await res.json();
-        setJobs(data);
+        console.log("Fetched data:", data); // Debugging log
+
+        // Ensure data.jobs is an array before calling map
+        if (data && Array.isArray(data.jobs)) {
+          setJobs(data.jobs);
+        } else {
+          console.error("Data is not in expected format", data);
+          setJobs([]); // Set jobs to an empty array to avoid map error
+        }
       } catch (error) {
-        console.log("error fetching data", error);
+        console.log("Error fetching data", error);
+        setJobs([]); // Set jobs to an empty array to avoid map error
       } finally {
         // Ensure the spinner shows for at least 1 second
         setTimeout(() => {
           setLoading(false);
-        }, 100);
+        }, 1000);
       }
     };
     fetchJobs();
-  }, []);
+  }, [isHome]);
 
   return (
     <div>
